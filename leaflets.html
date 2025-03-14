@@ -1,0 +1,426 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order parameters for individual leaflets &mdash; gorder &#34;0.6.0-dev.2&#34; documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=97568a9e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Maps of order parameters" href="ordermap.html" />
+    <link rel="prev" title="Analysis types" href="analysis_types.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            gorder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gorder.html">Performing the analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_types.html">Analysis types</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Order parameters for individual leaflets</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.leaflets.GlobalClassification"><code class="docutils literal notranslate"><span class="pre">GlobalClassification</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.GlobalClassification.membrane"><code class="docutils literal notranslate"><span class="pre">GlobalClassification.membrane</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.GlobalClassification.heads"><code class="docutils literal notranslate"><span class="pre">GlobalClassification.heads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.GlobalClassification.frequency"><code class="docutils literal notranslate"><span class="pre">GlobalClassification.frequency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.GlobalClassification.membrane_normal"><code class="docutils literal notranslate"><span class="pre">GlobalClassification.membrane_normal</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.leaflets.IndividualClassification"><code class="docutils literal notranslate"><span class="pre">IndividualClassification</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.IndividualClassification.heads"><code class="docutils literal notranslate"><span class="pre">IndividualClassification.heads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.IndividualClassification.methyls"><code class="docutils literal notranslate"><span class="pre">IndividualClassification.methyls</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.IndividualClassification.frequency"><code class="docutils literal notranslate"><span class="pre">IndividualClassification.frequency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.IndividualClassification.membrane_normal"><code class="docutils literal notranslate"><span class="pre">IndividualClassification.membrane_normal</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.leaflets.LocalClassification"><code class="docutils literal notranslate"><span class="pre">LocalClassification</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.LocalClassification.membrane"><code class="docutils literal notranslate"><span class="pre">LocalClassification.membrane</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.LocalClassification.heads"><code class="docutils literal notranslate"><span class="pre">LocalClassification.heads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.LocalClassification.radius"><code class="docutils literal notranslate"><span class="pre">LocalClassification.radius</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.LocalClassification.frequency"><code class="docutils literal notranslate"><span class="pre">LocalClassification.frequency</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.LocalClassification.membrane_normal"><code class="docutils literal notranslate"><span class="pre">LocalClassification.membrane_normal</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.leaflets.ManualClassification"><code class="docutils literal notranslate"><span class="pre">ManualClassification</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.ManualClassification.input"><code class="docutils literal notranslate"><span class="pre">ManualClassification.input</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.ManualClassification.frequency"><code class="docutils literal notranslate"><span class="pre">ManualClassification.frequency</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.leaflets.NdxClassification"><code class="docutils literal notranslate"><span class="pre">NdxClassification</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.NdxClassification.ndx"><code class="docutils literal notranslate"><span class="pre">NdxClassification.ndx</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.NdxClassification.heads"><code class="docutils literal notranslate"><span class="pre">NdxClassification.heads</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.NdxClassification.upper_leaflet"><code class="docutils literal notranslate"><span class="pre">NdxClassification.upper_leaflet</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.NdxClassification.lower_leaflet"><code class="docutils literal notranslate"><span class="pre">NdxClassification.lower_leaflet</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.leaflets.NdxClassification.frequency"><code class="docutils literal notranslate"><span class="pre">NdxClassification.frequency</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ordermap.html">Maps of order parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estimate_error.html">Estimating error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Order parameters for specific membrane region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="membrane_normal.html">Specifying membrane normal</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">Accessing the results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Errors you can encounter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">gorder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Order parameters for individual leaflets</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/leaflets.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gorder.leaflets">
+<span id="order-parameters-for-individual-leaflets"></span><h1>Order parameters for individual leaflets<a class="headerlink" href="#module-gorder.leaflets" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.leaflets.GlobalClassification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.leaflets.</span></span><span class="sig-name descname"><span class="pre">GlobalClassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membrane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.leaflets.GlobalClassification" title="Link to this definition"></a></dt>
+<dd><p>Assign lipids into leaflets based on the global membrane center of geometry.</p>
+<p>Generally reliable and fast. The best option for analyzing disrupted membranes.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.GlobalClassification.membrane">
+<span class="sig-name descname"><span class="pre">membrane</span></span><a class="headerlink" href="#gorder.leaflets.GlobalClassification.membrane" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying all lipids forming the membrane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.GlobalClassification.heads">
+<span class="sig-name descname"><span class="pre">heads</span></span><a class="headerlink" href="#gorder.leaflets.GlobalClassification.heads" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying reference atoms representing lipid headgroups
+(typically phosphorus atoms or phosphate beads).
+There must be exactly one such atom/bead per lipid molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.GlobalClassification.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#gorder.leaflets.GlobalClassification.frequency" title="Link to this definition"></a></dt>
+<dd><p>Frequency of classification. Defaults to every frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="gorder.html#gorder.Frequency" title="gorder.Frequency">Frequency</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.GlobalClassification.membrane_normal">
+<span class="sig-name descname"><span class="pre">membrane_normal</span></span><a class="headerlink" href="#gorder.leaflets.GlobalClassification.membrane_normal" title="Link to this definition"></a></dt>
+<dd><p>Membrane normal used for leaflet classification. Defaults to the membrane normal
+specified for the entire Analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.leaflets.IndividualClassification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.leaflets.</span></span><span class="sig-name descname"><span class="pre">IndividualClassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">heads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">methyls</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.leaflets.IndividualClassification" title="Link to this definition"></a></dt>
+<dd><p>Assign lipids into leaflets based on the orientation of acyl chains.</p>
+<p>Less reliable but computationally fast.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.IndividualClassification.heads">
+<span class="sig-name descname"><span class="pre">heads</span></span><a class="headerlink" href="#gorder.leaflets.IndividualClassification.heads" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying reference atoms representing lipid headgroups
+(typically phosphorus atoms or phosphate beads).
+There must be exactly one such atom/bead per lipid molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.IndividualClassification.methyls">
+<span class="sig-name descname"><span class="pre">methyls</span></span><a class="headerlink" href="#gorder.leaflets.IndividualClassification.methyls" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying reference atoms representing methyl groups at the ends of lipid tails.
+There should be exactly one such atom/bead per acyl chain (e.g., two for lipids with two acyl chains).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.IndividualClassification.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#gorder.leaflets.IndividualClassification.frequency" title="Link to this definition"></a></dt>
+<dd><p>Frequency of classification. Defaults to every frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="gorder.html#gorder.Frequency" title="gorder.Frequency">Frequency</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.IndividualClassification.membrane_normal">
+<span class="sig-name descname"><span class="pre">membrane_normal</span></span><a class="headerlink" href="#gorder.leaflets.IndividualClassification.membrane_normal" title="Link to this definition"></a></dt>
+<dd><p>Membrane normal used for leaflet classification. Defaults to the membrane normal
+specified for the entire Analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.leaflets.LocalClassification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.leaflets.</span></span><span class="sig-name descname"><span class="pre">LocalClassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">membrane</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">membrane_normal</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.leaflets.LocalClassification" title="Link to this definition"></a></dt>
+<dd><p>Assign lipids into leaflets based on the local membrane center of geometry.</p>
+<p>Useful for curved membranes but computationally slow.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.LocalClassification.membrane">
+<span class="sig-name descname"><span class="pre">membrane</span></span><a class="headerlink" href="#gorder.leaflets.LocalClassification.membrane" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying all lipids forming the membrane.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.LocalClassification.heads">
+<span class="sig-name descname"><span class="pre">heads</span></span><a class="headerlink" href="#gorder.leaflets.LocalClassification.heads" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying reference atoms representing lipid headgroups
+(typically phosphorus atoms or phosphate beads).
+There must be exactly one such atom/bead per lipid molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.LocalClassification.radius">
+<span class="sig-name descname"><span class="pre">radius</span></span><a class="headerlink" href="#gorder.leaflets.LocalClassification.radius" title="Link to this definition"></a></dt>
+<dd><p>Radius of a cylinder used to calculate the local membrane center of geometry (in nm).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.LocalClassification.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#gorder.leaflets.LocalClassification.frequency" title="Link to this definition"></a></dt>
+<dd><p>Frequency of classification. Defaults to every frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="gorder.html#gorder.Frequency" title="gorder.Frequency">Frequency</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.LocalClassification.membrane_normal">
+<span class="sig-name descname"><span class="pre">membrane_normal</span></span><a class="headerlink" href="#gorder.leaflets.LocalClassification.membrane_normal" title="Link to this definition"></a></dt>
+<dd><p>Membrane normal used for leaflet classification. Defaults to the membrane normal
+specified for the entire Analysis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.leaflets.ManualClassification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.leaflets.</span></span><span class="sig-name descname"><span class="pre">ManualClassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.leaflets.ManualClassification" title="Link to this definition"></a></dt>
+<dd><p>Get leaflet assignment from an external YAML file or a dictionary.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.ManualClassification.input">
+<span class="sig-name descname"><span class="pre">input</span></span><a class="headerlink" href="#gorder.leaflets.ManualClassification.input" title="Link to this definition"></a></dt>
+<dd><p>Path to the input YAML file containing the leaflet assignment
+or a dictionary specifying the leaflet assignment.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Union[str, dict]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.ManualClassification.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#gorder.leaflets.ManualClassification.frequency" title="Link to this definition"></a></dt>
+<dd><p>Frequency of classification. Defaults to every frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="gorder.html#gorder.Frequency" title="gorder.Frequency">Frequency</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.leaflets.NdxClassification">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.leaflets.</span></span><span class="sig-name descname"><span class="pre">NdxClassification</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ndx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">heads</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">upper_leaflet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">lower_leaflet</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">frequency</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.leaflets.NdxClassification" title="Link to this definition"></a></dt>
+<dd><p>Get leaflet assignment from NDX file(s).</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.NdxClassification.ndx">
+<span class="sig-name descname"><span class="pre">ndx</span></span><a class="headerlink" href="#gorder.leaflets.NdxClassification.ndx" title="Link to this definition"></a></dt>
+<dd><p>A list of NDX files to read.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List[str]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.NdxClassification.heads">
+<span class="sig-name descname"><span class="pre">heads</span></span><a class="headerlink" href="#gorder.leaflets.NdxClassification.heads" title="Link to this definition"></a></dt>
+<dd><p>Selection query specifying reference atoms representing lipid headgroups
+(typically phosphorus atoms or phosphate beads).
+There must be exactly one such atom/bead per lipid molecule.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.NdxClassification.upper_leaflet">
+<span class="sig-name descname"><span class="pre">upper_leaflet</span></span><a class="headerlink" href="#gorder.leaflets.NdxClassification.upper_leaflet" title="Link to this definition"></a></dt>
+<dd><p>Name of the group in the NDX file(s) specifying the atoms of the upper leaflet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.NdxClassification.lower_leaflet">
+<span class="sig-name descname"><span class="pre">lower_leaflet</span></span><a class="headerlink" href="#gorder.leaflets.NdxClassification.lower_leaflet" title="Link to this definition"></a></dt>
+<dd><p>Name of the group in the NDX file(s) specifying the atoms of the lower leaflet.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="gorder.leaflets.NdxClassification.frequency">
+<span class="sig-name descname"><span class="pre">frequency</span></span><a class="headerlink" href="#gorder.leaflets.NdxClassification.frequency" title="Link to this definition"></a></dt>
+<dd><p>Frequency of classification. Defaults to every frame.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Optional[<a class="reference internal" href="gorder.html#gorder.Frequency" title="gorder.Frequency">Frequency</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>No glob expansion is performed for the NDX files.</p></li>
+</ul>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="analysis_types.html" class="btn btn-neutral float-left" title="Analysis types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="ordermap.html" class="btn btn-neutral float-right" title="Maps of order parameters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ladislav Bartos.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

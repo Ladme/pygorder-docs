@@ -1,0 +1,524 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Accessing the results &mdash; gorder &#34;0.6.0-dev.2&#34; documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=4ae1632d" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=97568a9e"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Errors you can encounter" href="exceptions.html" />
+    <link rel="prev" title="Specifying membrane normal" href="membrane_normal.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            gorder
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gorder.html">Performing the analysis</a></li>
+<li class="toctree-l1"><a class="reference internal" href="analysis_types.html">Analysis types</a></li>
+<li class="toctree-l1"><a class="reference internal" href="leaflets.html">Order parameters for individual leaflets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ordermap.html">Maps of order parameters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="estimate_error.html">Estimating error</a></li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Order parameters for specific membrane region</a></li>
+<li class="toctree-l1"><a class="reference internal" href="membrane_normal.html">Specifying membrane normal</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Accessing the results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.AnalysisResults"><code class="docutils literal notranslate"><span class="pre">AnalysisResults</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AnalysisResults.average_order"><code class="docutils literal notranslate"><span class="pre">AnalysisResults.average_order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AnalysisResults.average_ordermaps"><code class="docutils literal notranslate"><span class="pre">AnalysisResults.average_ordermaps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AnalysisResults.get_molecule"><code class="docutils literal notranslate"><span class="pre">AnalysisResults.get_molecule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AnalysisResults.molecules"><code class="docutils literal notranslate"><span class="pre">AnalysisResults.molecules()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AnalysisResults.n_analyzed_frames"><code class="docutils literal notranslate"><span class="pre">AnalysisResults.n_analyzed_frames()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AnalysisResults.write"><code class="docutils literal notranslate"><span class="pre">AnalysisResults.write()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.AtomResults"><code class="docutils literal notranslate"><span class="pre">AtomResults</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AtomResults.atom"><code class="docutils literal notranslate"><span class="pre">AtomResults.atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AtomResults.bonds"><code class="docutils literal notranslate"><span class="pre">AtomResults.bonds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AtomResults.get_bond"><code class="docutils literal notranslate"><span class="pre">AtomResults.get_bond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AtomResults.molecule"><code class="docutils literal notranslate"><span class="pre">AtomResults.molecule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AtomResults.order"><code class="docutils literal notranslate"><span class="pre">AtomResults.order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.AtomResults.ordermaps"><code class="docutils literal notranslate"><span class="pre">AtomResults.ordermaps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.BondResults"><code class="docutils literal notranslate"><span class="pre">BondResults</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.BondResults.atoms"><code class="docutils literal notranslate"><span class="pre">BondResults.atoms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.BondResults.molecule"><code class="docutils literal notranslate"><span class="pre">BondResults.molecule()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.BondResults.order"><code class="docutils literal notranslate"><span class="pre">BondResults.order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.BondResults.ordermaps"><code class="docutils literal notranslate"><span class="pre">BondResults.ordermaps()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.Convergence"><code class="docutils literal notranslate"><span class="pre">Convergence</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Convergence.frames"><code class="docutils literal notranslate"><span class="pre">Convergence.frames()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Convergence.lower"><code class="docutils literal notranslate"><span class="pre">Convergence.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Convergence.total"><code class="docutils literal notranslate"><span class="pre">Convergence.total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Convergence.upper"><code class="docutils literal notranslate"><span class="pre">Convergence.upper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.Map"><code class="docutils literal notranslate"><span class="pre">Map</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Map.extract"><code class="docutils literal notranslate"><span class="pre">Map.extract()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Map.get_at"><code class="docutils literal notranslate"><span class="pre">Map.get_at()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Map.span_x"><code class="docutils literal notranslate"><span class="pre">Map.span_x()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Map.span_y"><code class="docutils literal notranslate"><span class="pre">Map.span_y()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Map.tile_dim"><code class="docutils literal notranslate"><span class="pre">Map.tile_dim()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.MoleculeResults"><code class="docutils literal notranslate"><span class="pre">MoleculeResults</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.atoms"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.atoms()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.average_order"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.average_order()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.average_ordermaps"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.average_ordermaps()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.bonds"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.bonds()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.convergence"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.convergence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.get_atom"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.get_atom()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.get_bond"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.get_bond()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.MoleculeResults.molecule"><code class="docutils literal notranslate"><span class="pre">MoleculeResults.molecule()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.Order"><code class="docutils literal notranslate"><span class="pre">Order</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Order.error"><code class="docutils literal notranslate"><span class="pre">Order.error()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.Order.value"><code class="docutils literal notranslate"><span class="pre">Order.value()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.OrderCollection"><code class="docutils literal notranslate"><span class="pre">OrderCollection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.OrderCollection.lower"><code class="docutils literal notranslate"><span class="pre">OrderCollection.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.OrderCollection.total"><code class="docutils literal notranslate"><span class="pre">OrderCollection.total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.OrderCollection.upper"><code class="docutils literal notranslate"><span class="pre">OrderCollection.upper()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#gorder.results.OrderMapsCollection"><code class="docutils literal notranslate"><span class="pre">OrderMapsCollection</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.OrderMapsCollection.lower"><code class="docutils literal notranslate"><span class="pre">OrderMapsCollection.lower()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.OrderMapsCollection.total"><code class="docutils literal notranslate"><span class="pre">OrderMapsCollection.total()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gorder.results.OrderMapsCollection.upper"><code class="docutils literal notranslate"><span class="pre">OrderMapsCollection.upper()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Errors you can encounter</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">gorder</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Accessing the results</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/results.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-gorder.results">
+<span id="accessing-the-results"></span><h1>Accessing the results<a class="headerlink" href="#module-gorder.results" title="Link to this heading"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">AnalysisResults</span></span><a class="headerlink" href="#gorder.results.AnalysisResults" title="Link to this definition"></a></dt>
+<dd><p>Class containing all the results of the analysis.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults.average_order">
+<span class="sig-name descname"><span class="pre">average_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AnalysisResults.average_order" title="Link to this definition"></a></dt>
+<dd><p>Get the average order parameters calculated from all bond types of all molecule types.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults.average_ordermaps">
+<span class="sig-name descname"><span class="pre">average_ordermaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AnalysisResults.average_ordermaps" title="Link to this definition"></a></dt>
+<dd><p>Get the average order parameter maps calculated from all bond types of all molecule types.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults.get_molecule">
+<span class="sig-name descname"><span class="pre">get_molecule</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AnalysisResults.get_molecule" title="Link to this definition"></a></dt>
+<dd><p>Get the results for a molecule with the specified name.
+Raises an exception if such molecule does not exist.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults.molecules">
+<span class="sig-name descname"><span class="pre">molecules</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AnalysisResults.molecules" title="Link to this definition"></a></dt>
+<dd><p>Get the results for each individual molecule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults.n_analyzed_frames">
+<span class="sig-name descname"><span class="pre">n_analyzed_frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AnalysisResults.n_analyzed_frames" title="Link to this definition"></a></dt>
+<dd><p>Get the total number of analyzed frames.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AnalysisResults.write">
+<span class="sig-name descname"><span class="pre">write</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AnalysisResults.write" title="Link to this definition"></a></dt>
+<dd><p>Write the results of the analysis into output files.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.AtomResults">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">AtomResults</span></span><a class="headerlink" href="#gorder.results.AtomResults" title="Link to this definition"></a></dt>
+<dd><p>Results of the analysis for a single atom type.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AtomResults.atom">
+<span class="sig-name descname"><span class="pre">atom</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AtomResults.atom" title="Link to this definition"></a></dt>
+<dd><p>Get the type of the atom for which these results were calculated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AtomResults.bonds">
+<span class="sig-name descname"><span class="pre">bonds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AtomResults.bonds" title="Link to this definition"></a></dt>
+<dd><p>Get the results for each bond of the atom.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AtomResults.get_bond">
+<span class="sig-name descname"><span class="pre">get_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relative_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AtomResults.get_bond" title="Link to this definition"></a></dt>
+<dd><p>Get the results for a bond between this heavy atom and the hydrogen atom with the specified relative index (AA) or
+get the results for a bond between this heavy atom and the virtual hydrogen atom with the specified index (UA).</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AtomResults.molecule">
+<span class="sig-name descname"><span class="pre">molecule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AtomResults.molecule" title="Link to this definition"></a></dt>
+<dd><p>Get the name of the molecule type for which these results were calculated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AtomResults.order">
+<span class="sig-name descname"><span class="pre">order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AtomResults.order" title="Link to this definition"></a></dt>
+<dd><p>Get the order parameters calculated for this atom.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.AtomResults.ordermaps">
+<span class="sig-name descname"><span class="pre">ordermaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.AtomResults.ordermaps" title="Link to this definition"></a></dt>
+<dd><p>Get the ordermaps calculated for this atom.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.BondResults">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">BondResults</span></span><a class="headerlink" href="#gorder.results.BondResults" title="Link to this definition"></a></dt>
+<dd><p>Results of the analysis for a single bond type.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.BondResults.atoms">
+<span class="sig-name descname"><span class="pre">atoms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.BondResults.atoms" title="Link to this definition"></a></dt>
+<dd><p>Get the atom types involved in this bond type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.BondResults.molecule">
+<span class="sig-name descname"><span class="pre">molecule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.BondResults.molecule" title="Link to this definition"></a></dt>
+<dd><p>Get the name of the molecule type for which these results were calculated.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.BondResults.order">
+<span class="sig-name descname"><span class="pre">order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.BondResults.order" title="Link to this definition"></a></dt>
+<dd><p>Get the order parameters calculated for this bond.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.BondResults.ordermaps">
+<span class="sig-name descname"><span class="pre">ordermaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.BondResults.ordermaps" title="Link to this definition"></a></dt>
+<dd><p>Get the maps of order parameters calculated for this bond.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.Convergence">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">Convergence</span></span><a class="headerlink" href="#gorder.results.Convergence" title="Link to this definition"></a></dt>
+<dd><p>Stores information about the convergence of calculations,
+i.e. the average order parameter for this molecule collected in time.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Convergence.frames">
+<span class="sig-name descname"><span class="pre">frames</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Convergence.frames" title="Link to this definition"></a></dt>
+<dd><p>Extract indices of trajectory frames where order parameters were calculated.
+The first analyzed frame is assigned an index of 1. For instance, if the
+analysis begins at 200 ns, the frame at or just after 200 ns is indexed as 1.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Convergence.lower">
+<span class="sig-name descname"><span class="pre">lower</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Convergence.lower" title="Link to this definition"></a></dt>
+<dd><p>Extract cumulative average order parameters for this molecule, calculated only for the lower leaflet.
+Follows the same format and logic as <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Convergence.total">
+<span class="sig-name descname"><span class="pre">total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Convergence.total" title="Link to this definition"></a></dt>
+<dd><p>Extract cumulative average order parameters for this molecule, calculated across the entire membrane.</p>
+<p>Each value in the vector represents the cumulative average for a molecule up to a specific frame:
+The first element corresponds to the value from the first frame.
+The second element is the average from the first two frames.
+The third element is the average from the first three frames, and so on.
+The last element is the overall average across all frames.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Convergence.upper">
+<span class="sig-name descname"><span class="pre">upper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Convergence.upper" title="Link to this definition"></a></dt>
+<dd><p>Extract umulative average order parameters for this molecule, calculated only for the upper leaflet.
+Follows the same format and logic as <code class="docutils literal notranslate"><span class="pre">total</span></code>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.Map">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">Map</span></span><a class="headerlink" href="#gorder.results.Map" title="Link to this definition"></a></dt>
+<dd><p>Map of order parameters.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Map.extract">
+<span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Map.extract" title="Link to this definition"></a></dt>
+<dd><p>Extract the order map into NumPy arrays.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>A tuple of NumPy arrays.
+The first array (1D) contains positions of the grid tiles along the x-axis.
+The second array (1D) contains positions of the grid tiles along the y-axis.
+The third array (2D) contains the calculated order parameters.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>Tuple[np.ndarray, np.ndarray, np.ndarray]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Map.get_at">
+<span class="sig-name descname"><span class="pre">get_at</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Map.get_at" title="Link to this definition"></a></dt>
+<dd><p>Get the value of the order parameter at the specified coordinates.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Map.span_x">
+<span class="sig-name descname"><span class="pre">span_x</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Map.span_x" title="Link to this definition"></a></dt>
+<dd><p>Get the span of the map in the x-dimension.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Map.span_y">
+<span class="sig-name descname"><span class="pre">span_y</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Map.span_y" title="Link to this definition"></a></dt>
+<dd><p>Get the span of the map along the y-dimension.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Map.tile_dim">
+<span class="sig-name descname"><span class="pre">tile_dim</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Map.tile_dim" title="Link to this definition"></a></dt>
+<dd><p>Get the dimnesions of a single grid tile of the map.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">MoleculeResults</span></span><a class="headerlink" href="#gorder.results.MoleculeResults" title="Link to this definition"></a></dt>
+<dd><p>Results of the analysis for a single molecule type.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.atoms">
+<span class="sig-name descname"><span class="pre">atoms</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.atoms" title="Link to this definition"></a></dt>
+<dd><p>Get the results for each atom of the molecule.
+Not available for coarse-grained order parameters, use <cite>bonds</cite> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.average_order">
+<span class="sig-name descname"><span class="pre">average_order</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.average_order" title="Link to this definition"></a></dt>
+<dd><p>Get the average order parameters calculated from all bond types of this molecule type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.average_ordermaps">
+<span class="sig-name descname"><span class="pre">average_ordermaps</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.average_ordermaps" title="Link to this definition"></a></dt>
+<dd><p>Get the average order parameter maps calculated from all bond types of this molecule type.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.bonds">
+<span class="sig-name descname"><span class="pre">bonds</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.bonds" title="Link to this definition"></a></dt>
+<dd><p>Get the results for each bond of the molecule.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.convergence">
+<span class="sig-name descname"><span class="pre">convergence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.convergence" title="Link to this definition"></a></dt>
+<dd><p>Get data about the convergence of the calculated order parameters.
+Returns <cite>None</cite> if convergence is not available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.get_atom">
+<span class="sig-name descname"><span class="pre">get_atom</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relative_index</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.get_atom" title="Link to this definition"></a></dt>
+<dd><p>Get the results for a heavy atom with the specified relative index.
+Not available for coarse-grained order parameters, use <cite>get_bond</cite> instead.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.get_bond">
+<span class="sig-name descname"><span class="pre">get_bond</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">relative_index_1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">relative_index_2</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.get_bond" title="Link to this definition"></a></dt>
+<dd><p>Get the results for a bond involving atoms with the specified relative indices.
+The order of the atom indices does not matter.
+Not available for united-atom order parameters.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.MoleculeResults.molecule">
+<span class="sig-name descname"><span class="pre">molecule</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.MoleculeResults.molecule" title="Link to this definition"></a></dt>
+<dd><p>Get the name of the molecule for which these results were calculated.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.Order">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">Order</span></span><a class="headerlink" href="#gorder.results.Order" title="Link to this definition"></a></dt>
+<dd><p>Single order parameter value, optionally with its estimated error.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Order.error">
+<span class="sig-name descname"><span class="pre">error</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Order.error" title="Link to this definition"></a></dt>
+<dd><p>Get the estimated error for this order parameter.
+Returns <cite>None</cite> if the error is not available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.Order.value">
+<span class="sig-name descname"><span class="pre">value</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.Order.value" title="Link to this definition"></a></dt>
+<dd><p>Get the value of the order parameter (mean from the analyzed frames).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.OrderCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">OrderCollection</span></span><a class="headerlink" href="#gorder.results.OrderCollection" title="Link to this definition"></a></dt>
+<dd><p>Order parameters for a single object calculated for the full membrane, the upper leaflet, and the lower leaflet.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.OrderCollection.lower">
+<span class="sig-name descname"><span class="pre">lower</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.OrderCollection.lower" title="Link to this definition"></a></dt>
+<dd><p>Get order parameter calculated from the lower leaflet.
+Returns <cite>None</cite> if the order parameter is not available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.OrderCollection.total">
+<span class="sig-name descname"><span class="pre">total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.OrderCollection.total" title="Link to this definition"></a></dt>
+<dd><p>Get order parameter calculated from the whole membrane.
+Returns <cite>None</cite> if the order parameter is not available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.OrderCollection.upper">
+<span class="sig-name descname"><span class="pre">upper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.OrderCollection.upper" title="Link to this definition"></a></dt>
+<dd><p>Get order parameter calculated from the upper leaflet.
+Returns <cite>None</cite> if the order parameter is not available.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="gorder.results.OrderMapsCollection">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">gorder.results.</span></span><span class="sig-name descname"><span class="pre">OrderMapsCollection</span></span><a class="headerlink" href="#gorder.results.OrderMapsCollection" title="Link to this definition"></a></dt>
+<dd><p>Ordermaps for a single object calculated for the full membrane, the upper leaflet, and the lower leaflet.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.OrderMapsCollection.lower">
+<span class="sig-name descname"><span class="pre">lower</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.OrderMapsCollection.lower" title="Link to this definition"></a></dt>
+<dd><p>Get order parameter map calculated from the lower leaflet.
+Returns <cite>None</cite> if the ordermap is not available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.OrderMapsCollection.total">
+<span class="sig-name descname"><span class="pre">total</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.OrderMapsCollection.total" title="Link to this definition"></a></dt>
+<dd><p>Get order parameter map calculated from the whole membrane.
+Returns <cite>None</cite> if the ordermap is not available.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="gorder.results.OrderMapsCollection.upper">
+<span class="sig-name descname"><span class="pre">upper</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#gorder.results.OrderMapsCollection.upper" title="Link to this definition"></a></dt>
+<dd><p>Get order parameter map calculated from the upper leaflet.
+Returns <cite>None</cite> if the ordermap is not available.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="membrane_normal.html" class="btn btn-neutral float-left" title="Specifying membrane normal" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="exceptions.html" class="btn btn-neutral float-right" title="Errors you can encounter" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2025, Ladislav Bartos.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
