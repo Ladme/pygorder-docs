@@ -45,7 +45,12 @@
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#using-uv">Using <code class="docutils literal notranslate"><span class="pre">uv</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-conda">Using <code class="docutils literal notranslate"><span class="pre">conda</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-pip">Using <code class="docutils literal notranslate"><span class="pre">pip</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="gorder.html">Performing the analysis</a></li>
 <li class="toctree-l1"><a class="reference internal" href="analysis_types.html">Analysis types</a></li>
 <li class="toctree-l1"><a class="reference internal" href="leaflets.html">Order parameters for individual leaflets</a></li>
@@ -83,10 +88,33 @@
              
   <section id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Link to this heading"></a></h1>
-<p>To install <code class="docutils literal notranslate"><span class="pre">gorder</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
-<p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">git+https://github.com/Ladme/gorder.git#subdirectory=pygorder</span></code></p>
-<p>However, you <strong>should</strong> use the <a class="reference external" href="https://github.com/astral-sh/uv">uv</a> package manager instead. To add <code class="docutils literal notranslate"><span class="pre">gorder</span></code> to your <code class="docutils literal notranslate"><span class="pre">uv</span></code> project, run:</p>
-<p><code class="docutils literal notranslate"><span class="pre">uv</span> <span class="pre">add</span> <span class="pre">git+https://github.com/Ladme/gorder.git#subdirectory=pygorder</span></code></p>
+<section id="using-uv">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">uv</span></code><a class="headerlink" href="#using-uv" title="Link to this heading"></a></h2>
+<p>The recommended way to install <code class="docutils literal notranslate"><span class="pre">gorder</span></code> as a Python package is to use the
+<a class="reference external" href="https://github.com/astral-sh/uv">uv</a> package manager. To add <code class="docutils literal notranslate"><span class="pre">gorder</span></code> to your
+<code class="docutils literal notranslate"><span class="pre">uv</span></code> project, run:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>uv<span class="w"> </span>add<span class="w"> </span>git+https://github.com/Ladme/gorder.git#subdirectory<span class="o">=</span>pygorder
+</pre></div>
+</div>
+</section>
+<section id="using-conda">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code><a class="headerlink" href="#using-conda" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">gorder</span></code> is also available on
+<a class="reference external" href="https://anaconda.org/conda-forge/pygorder">conda-forge</a>
+(credit to <a class="reference external" href="https://github.com/RubenChM">&#64;RubenChM</a>):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>gorder
+conda<span class="w"> </span>activate<span class="w"> </span>gorder
+conda<span class="w"> </span>install<span class="w"> </span>conda-forge::pygorder
+</pre></div>
+</div>
+</section>
+<section id="using-pip">
+<h2>Using <code class="docutils literal notranslate"><span class="pre">pip</span></code><a class="headerlink" href="#using-pip" title="Link to this heading"></a></h2>
+<p>If you use neither <code class="docutils literal notranslate"><span class="pre">uv</span></code> nor <code class="docutils literal notranslate"><span class="pre">conda</span></code>, you can also install <code class="docutils literal notranslate"><span class="pre">gorder</span></code> using <code class="docutils literal notranslate"><span class="pre">pip</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>git+https://github.com/Ladme/gorder.git#subdirectory<span class="o">=</span>pygorder
+</pre></div>
+</div>
+</section>
 </section>
 
 
